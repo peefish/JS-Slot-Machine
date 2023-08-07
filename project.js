@@ -11,8 +11,8 @@ const prompt = require("prompt-sync")();
 const ROWS = 3;
 const COLS = 3;
 
-const SYMBOLS_COUNT = {
-    A: 2,
+const SYMBOLS_COUNT = {          // define global variables, in caps to be clear they are constants
+    A: 2,  
     B: 4,
     C: 6,
     D: 8
@@ -27,7 +27,7 @@ const SYMBOL_VALUES = {
 
 
 
-const deposit = () => {
+const deposit = () => {    //deposit function to continually ask user for a valid deposit amount
     while (true) {
         const depositAmount = prompt("Enter A Deposit Amount: ");
         const numberDepositAmount = parseFloat(depositAmount);
@@ -40,7 +40,7 @@ const deposit = () => {
     }
 };
 
-const getNumberOfLines = () => {
+const getNumberOfLines = () => {     // function to get number of lines or rows user wants to bet on
     while (true) {
         const lines = prompt("Enter Number Of Lines to Bet (1-3): ");
         const numberOfLines = parseFloat(lines);
@@ -53,7 +53,7 @@ const getNumberOfLines = () => {
     }
 };
 
-const getBet = (balance, lines) => {
+const getBet = (balance, lines) => {      // function to get valid bet amount per line based on user balance and # lines they bet
     while (true) {
         const bet = prompt("Enter Bet Per Line: ");
         const numberBet = parseFloat(bet);
@@ -66,7 +66,7 @@ const getBet = (balance, lines) => {
     }
 };
 
-const spin = () => {
+const spin = () => {      // spin the slot machine, generate all possible symbols in each reel, then randomly select
     const symbols = [];
     for (const [symbol, count] of Object.entries(SYMBOLS_COUNT)) {
         for (let i = 0; i < count; i++) {
@@ -87,7 +87,7 @@ const spin = () => {
     return reels;
 };
 
-const transpose = (reels) => {
+const transpose = (reels) => {    // helper function to convert all columns into rows to make information more easily dissmenated to user
     const rows = [];
 
     for (let i = 0; i < ROWS; i++) {
@@ -99,7 +99,7 @@ const transpose = (reels) => {
     return rows;
 };
 
-const printRows = (rows) => {
+const printRows = (rows) => {     // function to print rows in correct formatting
     for (const row of rows) {
         let rowString = "";
         for (const [i, symbol] of row.entries()) {
@@ -112,7 +112,7 @@ const printRows = (rows) => {
     }
 };
 
-const getWinnings = (rows, bet, lines) => {
+const getWinnings = (rows, bet, lines) => {    //function to determine all winnings user won from specific rows or reels
     let winnings  = 0;
 
     for (let row = 0; row < lines; row++) {
@@ -132,7 +132,7 @@ const getWinnings = (rows, bet, lines) => {
     return winnings;
 };
 
-const game = () => {
+const game = () => {     //function game function to continually play slots until the user wants to stop playing
 
 let balance = deposit();
 
